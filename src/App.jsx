@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import './index.css';
-import logo from './assets/logo.png';
+import logo from './assets/Logo.png';
 import cafeLogo from './assets/cafe_logo.png';
 
 function App() {
