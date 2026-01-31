@@ -7,6 +7,29 @@ import cafeLogo from './assets/cafe_logo.png';
 function App() {
   const [expandedPerfId, setExpandedPerfId] = useState(1);
 
+  const [expandedNoticeId, setExpandedNoticeId] = useState(null);
+
+  const notices = [
+    {
+      id: 1,
+      date: "2024.05.01",
+      title: "[공지] 신입 단원 모집 안내 (오디션 일정)",
+      content: "2024년 하반기 정기공연을 함께할 신입 단원을 모집합니다. 열정 넘치는 여러분의 많은 지원 바랍니다. 상세 일정 및 지원 방법은 카페 공지사항을 확인해주세요."
+    },
+    {
+      id: 2,
+      date: "2024.04.20",
+      title: "[티켓] '한여름 밤의 꿈' 티켓 오픈 안내",
+      content: "제6회 정기공연 '한여름 밤의 꿈' 티켓 예매가 인터파크와 예스24를 통해 오픈되었습니다. 조기 예매 할인 혜택도 놓치지 마세요!"
+    },
+    {
+      id: 3,
+      date: "2024.03.15",
+      title: "[소식] 제5회 뮤지컬 페스티벌 대상 수상!",
+      content: "우리 극단이 제5회 아마추어 뮤지컬 페스티벌에서 대상을 수상했습니다. 응원해주신 모든 분들께 감사드립니다."
+    }
+  ];
+
   const performances = [
     {
       id: 1,
@@ -140,23 +163,28 @@ function App() {
       </section>
 
       {/* Notice Section */}
+      {/* Notice Section */}
       <section id="notice" className="content-section">
         <div className="section-container">
           <h2 className="section-title">공지사항</h2>
-          <ul className="notice-list">
-            <li>
-              <span className="notice-date">2024.05.01</span>
-              <span className="notice-content">[공지] 신입 단원 모집 안내 (오디션 일정)</span>
-            </li>
-            <li>
-              <span className="notice-date">2024.04.20</span>
-              <span className="notice-content">[티켓] '한여름 밤의 꿈' 티켓 오픈 안내</span>
-            </li>
-            <li>
-              <span className="notice-date">2024.03.15</span>
-              <span className="notice-content">[소식] 제5회 뮤지컬 페스티벌 대상 수상!</span>
-            </li>
-          </ul>
+          <div className="notice-list">
+            {notices.map((notice) => (
+              <div
+                key={notice.id}
+                className={`notice-item ${expandedNoticeId === notice.id ? 'active' : ''}`}
+                onClick={() => setExpandedNoticeId(expandedNoticeId === notice.id ? null : notice.id)}
+              >
+                <div className="notice-header">
+                  <span className="notice-date">{notice.date}</span>
+                  <span className="notice-title">{notice.title}</span>
+                  <span className="notice-icon">{expandedNoticeId === notice.id ? '−' : '+'}</span>
+                </div>
+                <div className={`notice-content ${expandedNoticeId === notice.id ? 'expanded' : ''}`}>
+                  <p>{notice.content}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

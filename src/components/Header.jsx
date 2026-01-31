@@ -11,6 +11,12 @@ const Header = () => {
         { label: 'Contact', href: '#contact' },
     ];
 
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <header className="header">
             <div className="logo-container">
@@ -18,11 +24,20 @@ const Header = () => {
                     <img src={logo} alt="행복을 찾은 사람들" className="logo-img" />
                 </a>
             </div>
-            <nav className="nav">
+
+            <button className="mobile-menu-btn" onClick={toggleMenu}>
+                <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+            </button>
+
+            <nav className={`nav ${isMenuOpen ? 'active' : ''}`}>
                 <ul>
                     {menuItems.map((item, index) => (
                         <li key={index}>
-                            <a href={item.href}>{item.label}</a>
+                            <a href={item.href} onClick={() => setIsMenuOpen(false)}>
+                                {item.label}
+                            </a>
                         </li>
                     ))}
                 </ul>
