@@ -222,7 +222,7 @@ body {
   .nav a {
     font-size: 1.1rem;
     text-align: center;
-    padding-left: 0.5rem;
+    padding-left: 0rem;
   }
 
   /* Prevent awkward line breaks globally on mobile */
