@@ -12,6 +12,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
 }
 
 body {
@@ -21,6 +23,9 @@ body {
   color: var(--text-main);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
+  width: 100%;
 }
 
 /* Header Styling */
@@ -189,7 +194,7 @@ body {
   .nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 190px;
     height: 100vh;
     background-color: #fff;
@@ -198,12 +203,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: right 0.3s ease-in-out;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
     z-index: 1000;
   }
 
   .nav.active {
-    right: 0;
+    transform: translateX(0);
   }
 
   .nav ul {
@@ -296,15 +302,48 @@ body {
 }
 
 .hero-section {
-  padding: 8rem 2rem 6rem;
-  /* Reduced padding */
-  text-align: center;
-  background: linear-gradient(135deg, #fff 0%, #fdfbf7 100%);
-  min-height: 50vh;
-  /* Reduced to 60% */
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  background-color: #fff;
+  /* Fallback color */
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  /* Dark overlay for text readability */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 2rem;
 }
 
 .section-container {
@@ -331,16 +370,17 @@ body {
   font-family: var(--font-serif);
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
-  background: linear-gradient(to right, #1a1a1a, #B8860B);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .section-title {

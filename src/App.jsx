@@ -3,6 +3,7 @@ import Header from './components/Header';
 import './index.css';
 import logo from './assets/Logo.png';
 import cafeLogo from './assets/cafe_logo.png';
+import mainVideo from './assets/Main.mp4';
 
 function App() {
   const [expandedPerfId, setExpandedPerfId] = useState(1);
@@ -66,6 +67,16 @@ function App() {
 
       {/* Hero Section */}
       <section id="hero" className="hero-section">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src={mainVideo} type="video/mp4" />
+        </video>
+        <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1 className="hero-title">무대의 마법을 만나보세요</h1>
           <p className="hero-subtitle">
